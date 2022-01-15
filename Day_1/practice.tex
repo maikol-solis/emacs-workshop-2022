@@ -1,0 +1,93 @@
+\documentclass{article}
+% Vayan hasta donde dice \author usando ESC y luego h,j,k,l
+
+\usepackage{amsmath}
+
+\title{Emacs Workshop}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% 1. Pongan el cursor justo antes de la x.
+% 2. Presionen ESC d w
+% 3. Presionen i
+% 4. Escriban su nombre
+\author{xName}
+
+\date{\today}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Eliminen el doble begin
+% 1. Presionen SPC m c
+% 2. Hay un error.
+% 3. Eliminen el error con d d
+\begin{document}
+\begin{document} % Eliminen esta línea con d d
+\maketitle
+
+\section{Hello World!}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% change inside sentence
+% c i s
+Quiero cambiar esta oración. Esta no la quiero cambiar.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% change find )
+% c f )
+La oración termina acá jfkdj fgfcd qwas ).
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% change till )
+% c t )
+(Esto es correcto, esto no fdf erertr)
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% delete till )
+% d t )
+(Esto es correcto, esto no fdf erertr)
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% change surrounding command <with>command
+% cscc texttt
+\textbf{Hello World!}
+
+Para comparación
+\textbf{Hello World!}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% change inner ^
+% ci^
+$a^2+b^3=c^2$
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% multicursors
+% M-d
+I shall be telling this with a sigh
+Somewhere ages and ages hence:
+Two roads diverged in a wood, and I—
+I took the one less traveled by,
+And that has made all the difference.
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% multicursors in visual block mode
+% C-v gzI
+
+\begin{itemize}
+Primero.
+Segundo.
+Tercero
+\end{itemize}
+
+
+
+\end{document}
