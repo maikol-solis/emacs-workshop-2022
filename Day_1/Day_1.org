@@ -58,7 +58,6 @@ Little by little I have all my workflow in Emacs now.
 - 1976 :: Richard M. Stallman wrote the first Emacs (“Editor MACroS”).
 - 1984 :: RMS started with the GNU Emacs (free opensource) in Lisp and C.
 - 1985 :: Release of first Emacs version (13.0) only supporting console.
-- 1992 :: Lucid Emacs 19.0 (XEmacs) starts support graphical interfaces (X11).
 - 2001 :: GNU Emacs has graphical interfaces (an other modern features).
 - 2003 :: Carten Dominik creates =org-mode= as an independent package.
 - 2006 :: =org-mode= is included by default in Emacs.
