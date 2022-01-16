@@ -204,8 +204,18 @@ All the files are in =~/.doom.d/=
   - =(after! a-package body)=
 
     Execute body after load =a-package=.
+  - =(setq variable value)=
+
+    Set a variable to a value.
+
 - =init.el=: Activate/Deactivate modules.
 - =package.el= Add new packages with =(package!)=.
+
+
+** Where to get help?
+
+- https://emacsdocs.org/
+- https://discourse.doomemacs.org/t/other-learning-resources/48
 
 * Basic operations
 ** Some definitions
@@ -233,12 +243,13 @@ All the files are in =~/.doom.d/=
 
 ** Basic shortcuts
 
-- =SPC=  :: Displays the main menu.
-- =SPC SPC= :: Opens a file in project (current folder or git repository).
+- =SPC=  :: Display the main menu.
+- =SPC SPC= :: Open a file in project (current folder or git repository).
 - =SPC := :: =M-x= execute any command.
-- =SPC h=  :: Shows the help system.
-- =SPC h i=  :: Shows the manuals (look for /Org Mode/ and /Emacs/).
-- =SPC h d m=  :: Shows help with modules.
+- =SPC h=  :: The help system.
+- =SPC h i=  :: Official manuals (look for /Org Mode/ and /Emacs/).
+- =SPC h d h=  :: Doom help.
+- =SPC h d m=  :: Doom's module help.
 
 ** Open and saving
 
