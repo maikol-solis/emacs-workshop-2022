@@ -46,6 +46,71 @@ digraph G {
 [[file:org_flow.png]]
 #+end_export
 
+* Why =org-mode= and not Markdown?
+
+First Markdown is just a name for many "flavours"
+- the original implementation (2004)
+- Markdown Extra
+- MultiMarkdown
+- GitHub Flavored Markdown
+- CommonMark which tries to standardize the Markdown standard (again)
+
+In general there is no consistency. Some examples:
+
+- Headings:
+
+#+begin_example
+ Prefix headings:
+
+ # Heading 1
+ ## Heading 2
+ ### Heading 3
+
+ Pre- and postfix headings:
+
+ = Heading 1 =
+ == Heading 2 ==
+ === Heading 3 ===
+
+ Underlined headings:
+
+ Heading 1
+ =========
+
+ Heading 2
+ ~~~~~~~~~
+
+ Heading 3
+ *********
+#+end_example
+
+- Lists:
+
+#+begin_example
+this
+
+,* item 1
+,* item 2
+,* item 3
+
+is the same as
+
+- item 1
+- item 2
+- item 3
+#+end_example
+
+A good article about it: https://karl-voit.at/2017/09/23/orgmode-as-markup-only/
+
+
+=Org-mode= is a unified markup language, capable of formating text, run code and export it to multiple formats.
+#+begin_example
+      |--Code--|             |--Raw Code--> Computer
+Ideas-|        |-->Org Mode--|
+      |--Text--|             |--Document--> People
+#+end_example
+
+
 * Preparation
 1. Enable export in background
 #+begin_src elisp
@@ -55,6 +120,10 @@ digraph G {
 3. Use this command =SPC m e l p=.
 
 * Exercises
+
+** Documentation
+
+https://orgmode.org/worg/dev/org-syntax-edited.html
 
 ** Org-mode syntax
 
