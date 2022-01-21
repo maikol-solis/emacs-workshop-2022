@@ -8,38 +8,39 @@
 
 ** What is =org-mode=?
 
-#+begin_src dot :file org_flow.png :exports results
-digraph G {
-    layout=circo;
-    // rankdir=LR;
-    // newrank = true;
-    // fixedsize = true;
-    // forcelabels=true;
-    dpi = 600;
-    // graph [compound=true, labelloc="t"];
-    // edge [lblstyle="above, sloped"];
-    node[shape="box"]
 
-    org [label=<
-         <TABLE class="table" border="0" cellborder="0" cellspacing="0" >
-         <TR><TD fixedsize="true" width="50" height="50"><img src="org_logo.png"/></TD></TR>
-         <TR><TD>org-mode</TD></TR>
-         </TABLE>> ]
+# #+begin_src dot :file org_flow.png :exports results
+# digraph G {
+#     layout=circo;
+#     // rankdir=LR;
+#     // newrank = true;
+#     // fixedsize = true;
+#     // forcelabels=true;
+#     dpi = 600;
+#     // graph [compound=true, labelloc="t"];
+#     // edge [lblstyle="above, sloped"];
+#     node[shape="box"]
 
-    task [label="Tasks (org-syntax):\nTo-Dos,\nDeadlines,\nPriorities,\n..." ]
-    export [label="Export (org-export):\npdf, html,\nodt, md,\n,..." ]
-    babel [label="Babel (org-babel):\nR, Python,\n C++, ELisp,\n..." ]
-    calendar [label="Calendar (org-agenda):\nAgenda,\n Google Calendar,\n..." ]
-    notes [label="Notes (org-roam):\n Zettelkasten,\n Lectures,\n..." ]
+#     org [label=<
+#          <TABLE class="table" border="0" cellborder="0" cellspacing="0" >
+#          <TR><TD fixedsize="true" width="50" height="50"><img src="org_logo.png"/></TD></TR>
+#          <TR><TD>org-mode</TD></TR>
+#          </TABLE>> ]
 
-    org -> task
-    org -> export
-    org -> babel
-    org -> calendar
-    org -> notes
-}
+#     task [label="Tasks (org-syntax):\nTo-Dos,\nDeadlines,\nPriorities,\n..." ]
+#     export [label="Export (org-export):\npdf, html,\nodt, md,\n,..." ]
+#     babel [label="Babel (org-babel):\nR, Python,\n C++, ELisp,\n..." ]
+#     calendar [label="Calendar (org-agenda):\nAgenda,\n Google Calendar,\n..." ]
+#     notes [label="Notes (org-roam):\n Zettelkasten,\n Lectures,\n..." ]
 
-#+end_src
+#     org -> task
+#     org -> export
+#     org -> babel
+#     org -> calendar
+#     org -> notes
+# }
+
+# #+end_src
 
 #+RESULTS:
 #+begin_export latex
@@ -116,8 +117,13 @@ Ideas-|        |-->Org Mode--|
 #+begin_src elisp
 (setq org-export-in-background t)
 #+end_src
+
+#+RESULTS:
+: t
+
 2. Enable pdf module (optional)
 3. Use this command =SPC m e l p=.
+
 
 * Exercises
 
@@ -129,19 +135,33 @@ https://orgmode.org/worg/dev/org-syntax-edited.html
 
 Type of emphasis:
 
-# *bold* /emphasis/ =monospace= _underline_ ~verbatim~ +striketrough+ $\alpha + \beta$
+*bold*
+/emphasis/
+=monospace=
+_underline_
+~verbatim~
++striketrough+
+$\alpha + \beta$
 
 
 ** Headings
 - Use levels and stars
 - TODO states
 
-# #+begin_src elisp
-# (setq org-todo-keywords
-#       '((sequence "TODO" "FEEDBACK" "VERIFY" "|" "DONE" "CANCELED")))
-# #+end_src
+* DONE Llevar a pasear el perro
+** DONE Nivel 2
+*** DONE Nivel 3
+**** DONE Subir el cerro chirripó
 
-# # #+TODO: TODO FEEDBACK VERIFY | DONE CANCELED
+#+begin_src elisp
+(setq org-todo-keywords
+      '((sequence "TODO" "NEXT" "WAIT" "|" "DONE" "CANCELED")))
+#+end_src
+
+#+RESULTS:
+| sequence | TODO | NEXT | WAIT |   |   | DONE | CANCELED |
+
+#+TODO: TODO(t) FEEDBACK(f) VERIFY(v) | DONE(d) CANCELED(c)
 
 ** Date and times
 - =SPC m d=
@@ -150,23 +170,51 @@ Type of emphasis:
 - Deadline
 - Scheduled
 
+<2022-01-20 Thu 12:00>
+[2022-01-20 Thu 13:00]
+
+** Tareas para el 29 de enero
+DEADLINE: <2022-01-29 Sat>
+*** Tarea 1
+*** Tarea 2
+
 ** Priorities
 - =SPC m p=
 - A, B, C
+
+*** [#A] Tarea muy importante
+*** [#B] Tarea mas o menos importante
+*** [#C] Tarea no importante
 
 ** Tags
 - C-c C-c
 - SPC m q
 
+*** Mi etiquetas :curso:
+*** Otra etiqueta :trabajo:
+
 ** Statistical cookies
 - =[/]= =[%]=
+*** [3/3] Projecto
+**** DONE Tarea 1
+**** DONE Tarea 2
+**** DONE Tarea 3
 
+*** [100%] Projecto
+**** DONE Tarea 1
+**** DONE Tarea 2
+**** DONE Tarea 3
 
 ** Plain lists
 - bullets
 - checkbox
 - statistical cookies
 - start in any number
+
+- parent item
+  - [X] item 1
+  - [ ] item 2
+  - [ ] item 3
 
 ** CLock in & Clock out
 - SPC m c i
@@ -178,86 +226,56 @@ Type of emphasis:
 - |Name|Phone|Age|
 - |-
 
+| Name     | Phone | Age |
+|----------+-------+-----|
+| Maria    |   123 |  25 |
+| Filomeno |   453 |  30 |
 
-# | N | N^2 | N^3 | N^4 | sqrt(n) | sqrt[4](N) |
-# |---+-----+-----+-----+---------+------------|
-# | / | <   |     | >   | <       | >          |
-# | 1 |     |     |     |         |            |
-# | 2 |     |     |     |         |            |
-# | 3 |     |     |     |         |            |
-# |---+-----+-----+-----+---------+------------|
-# # #+TBLFM: $2=$1^2::$3=$1^3::$4=$1^4::$5=sqrt($1)::$6=sqrt(sqrt(($1)))
+
+
+| N | N^2 | N^3 | N^4 |   sqrt(N) | sqrt[4](N) |
+|---+-----+-----+-----+-----------+------------|
+| / |   < |     |   > |         < |          > |
+| 1 |   1 |   1 |   1 |         1 |          1 |
+| 2 |   4 |   8 |  16 | 1.4142136 |  1.1892071 |
+| 3 |   9 |  27 |  81 | 1.7320508 |  1.3160740 |
+|---+-----+-----+-----+-----------+------------|
+#+TBLFM: $2=$1^2::$3=$1^3::$4=$1^4::$5=sqrt($1)::$6=sqrt(sqrt(($1)))
 
 
 ** Links
 
-# [[file:org_logo.png]]
+[[file:org_flow.png]]
 
-# [[../Day_2]]
+[[../Day_2]]
 
-# [[http://www.google.com]]
+[[http://www.google.com]]
 
-# [[http://www.google.com][Google]]
+Aquí está el link de [[http://www.google.com][Google]]
 
 
 ** Captions
 
-# #+caption: Org logo
-# [[file:org_logo.png]]
+#+caption: Org logo
+[[file:org_logo.png]]
 
 
 
 ** Labels
 
 # Example #1
-# #+caption: Other org logo
-# #+name: fig:org
-# [[file:org_logo.png]]
+#+caption: Other org logo
+#+name: figura_a_org
+[[file:org_logo.png]]
 
-# This is a link to [[fig:org]]
+This is a link to [[figura_a_org]]
 
 
 # Example #2
-# 1. one item
-# 2. <<target>>another item
-# Here we refer to item [[target]].
+1. one item
+2. <<target>>another item
+Here we refer to item [[target]].
 
 
 
 
-** Captures and Templates
-
-
-# #+begin_src emacs-lisp
-# (setq org-capture-templates
-#       (setq org-capture-templates
-#             '(("t" "Todo" entry
-#                (file+headline "~/documents/2022/2022_01_Taller_Emacs/org/gtd.org" "Tasks")
-#                "* TODO %?\n  %i\n  %a")
-#               ("j" "Journal" entry
-#                (file+datetree  "~/documents/2022/2022_01_Taller_Emacs/org/gtd.org" "Journal")
-#                "* %?\nEntered on %U\n  %i\n  %a"))))
-# #+end_src
-
-
-
-org-mode manual: https://orgmode.org/manual/Capture-templates.html
-
-** Agenda views
-
-
-# #+begin_src elisp
-# (setq org-agenda-files '("~/documents/2022/2022_01_Taller_Emacs/org/gtd.org"))
-# #+end_src
-
-
-# #+begin_src elisp
-#   (setq org-agenda-custom-commands
-#         '(("z" "My own agenda"
-#            ((agenda "")
-#             (todo "WAIT" nil)
-#             (tags-todo "+PRIORITY=\"A\"+TODO=\"NEXT\"")))))
-# #+end_src
-
-
-https://orgmode.org/manual/Custom-Agenda-Views.html
