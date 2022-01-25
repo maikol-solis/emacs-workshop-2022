@@ -5,6 +5,9 @@
 #+BIBLIOGRAPHY: library.bib
 # #+PROPERTY: header-args :exports code
 
+* Primero
+** Segundo
+*** Tercero
 
 * More examples of org-mode
 
@@ -14,20 +17,19 @@
 :END:
 
 
-# #+begin_src emacs-lisp
-# (setq org-capture-templates
-#       (setq org-capture-templates
-#             '(("t" "Todo" entry
-#                (file "~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org")
-#                ;; (file+headline "~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org" "Bandeja de entrada")
-#                "* TODO %?\n  %i")
-#               ("j" "Journal" entry
-#                (file+datetree  "~/documents/2022/2022_01_Taller_Emacs/Day_3/journal.org" "Journal")
-#                "* %?\nEntered on %U\n  %i\n  %a"))))
-# #+end_src
+#+begin_src emacs-lisp
+(setq org-capture-templates
+            '(("t" "Todo" entry
+               (file "~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org")
+               ;; (file+headline "~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org" "Bandeja de entrada")
+               "* TODO %?\n  %i")
+              ("j" "Journal" entry
+               (file+datetree  "~/documents/2022/2022_01_Taller_Emacs/Day_3/journal.org" "Journal")
+               "* %?\nEntered on %U\n  %i\n  %a")))
+#+end_src
 
-# #+RESULTS:
-# | t | Todo | entry | (file+headline ~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org Bandeja de entrada) | * TODO %? |
+#+RESULTS:
+| t | Todo | entry | (file+headline ~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org Bandeja de entrada) | * TODO %? |
 
 
 
