@@ -1,0 +1,12 @@
+#+TITLE: Journal
+
+* 2022
+
+** 2022-01 January
+
+*** 2022-01-25 Tuesday
+
+**** Registro de hoy
+Entered on [2022-01-25 Tue 10:55]
+
+  [[file:~/Dropbox/home/documents/2022/2022_01_Taller_Emacs/Day_3/Day_3.org::*Captures and Templates][Captures and Templates]]

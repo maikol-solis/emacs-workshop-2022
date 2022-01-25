@@ -19,17 +19,17 @@
 
 #+begin_src emacs-lisp
 (setq org-capture-templates
-            '(("t" "Todo" entry
-               (file "~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org")
-               ;; (file+headline "~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org" "Bandeja de entrada")
+            '(("t" "Mi nueva tarea" entry
+               ;; (file "~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org")
+               (file+headline "~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org" "Bandeja de entrada")
                "* TODO %?\n  %i")
               ("j" "Journal" entry
-               (file+datetree  "~/documents/2022/2022_01_Taller_Emacs/Day_3/journal.org" "Journal")
+               (file+datetree  "~/documents/2022/2022_01_Taller_Emacs/Day_3/journal.org")
                "* %?\nEntered on %U\n  %i\n  %a")))
 #+end_src
 
 #+RESULTS:
-| t | Todo | entry | (file+headline ~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org Bandeja de entrada) | * TODO %? |
+| t | Mi nueva tarea | entry | (file+headline ~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org Bandeja de entrada) | * TODO %? |
 
 
 
@@ -38,27 +38,27 @@ https://orgmode.org/manual/Capture-templates.html
 ** Agenda views
 
 
-# #+begin_src elisp
-# (setq org-agenda-files '("~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org"))
-# #+end_src
+#+begin_src elisp
+(setq org-agenda-files '("~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org"))
+#+end_src
 
-# #+RESULTS:
-# | ~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org |
+#+RESULTS:
+| ~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org |
 
 
-# #+begin_src elisp
-#   (setq org-agenda-custom-commands
-#         '(("z" "Mi propia agenda"
-#            (
-#             (agenda "")
-#             (agenda "" ((org-agenda-start-day "-1d") ;nil
-#                         (org-agenda-span 10))) ;0
-#             (todo "WAIT" nil)
-#             (tags-todo "+PRIORITY=\"A\"+TODO=\"NEXT\"")))))
-# #+end_src
+#+begin_src elisp
+  (setq org-agenda-custom-commands
+        '(("z" "Mi propia agenda"
+           (
+            ;; (agenda "")
+            (agenda "" ((org-agenda-start-day nil) ;nil
+                        (org-agenda-span 0))) ;0
+            (todo "WAIT" nil)
+            (tags-todo "+PRIORITY=\"A\"+TODO=\"NEXT\"")))))
+#+end_src
 
-# #+RESULTS:
-# | z | My propia agenda | ((agenda ) (agenda  ((org-agenda-start-day -1d) (org-agenda-span 10))) (todo WAIT nil) (tags-todo +PRIORITY="A"+TODO="NEXT")) |
+#+RESULTS:
+| z | Mi propia agenda | ((agenda  ((org-agenda-start-day nil) (org-agenda-span 0))) (todo WAIT nil) (tags-todo +PRIORITY="A"+TODO="NEXT")) |
 
 
 https://orgmode.org/manual/Custom-Agenda-Views.html
@@ -92,10 +92,10 @@ https://orgmode.org/manual/Custom-Agenda-Views.html
 By default is Chicago style.
 
 # #+cite_export: csl apa.csl
-#+cite_export: csl chicago-author-date.csl
-# #+cite_export: csl ieee.csl
+# #+cite_export: csl chicago-author-date.csl
+#+cite_export: csl ieee.csl
 
-- In parenthesis :: This work was already done[cite:@SanchezPLS2013;@RaoData2005;@HardleApplied2019]
+- In parenthesis :: This work was already done [cite:@SanchezPLS2013;@RaoData2005;@HardleApplied2019;@TinsleyHandbook2000;]
 - In text: ::  In [cite/t:@HardleMultivariate2015 p. 7;@HairMultivariate2019;@TinsleyHandbook2000] we have ...
 - Only authors: :: The work of [cite/t:@HardleMultivariate2015]... In fact, [cite/a/b:@HardleMultivariate2015] discovered that...
 - Full list of styles: :: https://blog.tecosaur.com/tmio/2021-07-31-citations.html
@@ -105,9 +105,11 @@ By default is Chicago style.
 
 #+print_bibliography:
 
+
 * org-babel
 
 ** Default block
+
 #+BEGIN_SRC python
 print("hello world")
 #+END_SRC
@@ -116,6 +118,7 @@ print("hello world")
 : None
 
 ** Exporting results
+
 #+BEGIN_SRC python :exports both :results output
 print("hello world")
 #+END_SRC
@@ -123,22 +126,34 @@ print("hello world")
 #+RESULTS:
 : hello world
 
-** Different kind of language
+** Different kind of languages
 
 
 *** Python
-#+BEGIN_SRC python :exports both
+
+**** Insert images manually
+#+BEGIN_SRC python :results output :exports results
 import matplotlib.pyplot as plt
 plt.plot([1,2,3,4])
-plt.savefig('fig1_manual.png')
+plt.savefig('fig_manual.png')
 #+END_SRC
 
 #+RESULTS:
-: None
 
-[[./fig1_manual.png]]
+[[./fig_manual.png]]
 
-*** R
+**** Insert images automatically
+#+BEGIN_SRC python :results file graphics :exports results :file fig_auto.png
+import matplotlib.pyplot as plt
+plt.plot([5,4,3,2])
+plt.savefig('fig_auto.png')
+#+END_SRC
+
+#+RESULTS:
+[[file:fig_auto.png]]
+
+
+*** R (ggplot2)
 
 #+begin_src R :results file graphics :exports results :file foo.png
 library(ggplot2)
@@ -152,6 +167,7 @@ print(p)
 
 *** C++
 
+**** Hello world!
 #+begin_src cpp :exports both
 #include <iostream>
 
@@ -163,3 +179,25 @@ int main() {
 
 #+RESULTS:
 : Hello World!
+
+
+**** Build pyramids
+#+begin_src cpp :exports both
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int rows = 5;
+
+    for(int i = 1; i <= rows; ++i)
+    {
+        for(int j = 1; j <= i; ++j)
+        {
+          cout << j << " ";
+        }
+        cout << "\n";
+    }
+    return 0;
+}
+#+end_src
