@@ -1,0 +1,163 @@
+#+TITLE: Emacs workshop 2022: Day 2
+#+DATE: 2022-01-25
+#+AUTHOR: Maikol Solís
+#+options: H:2 title:nil toc:nil
+#+BIBLIOGRAPHY: library.bib
+# #+PROPERTY: header-args :exports code
+
+
+* More examples of org-mode
+
+** Captures and Templates
+:PROPERTIES:
+:ID:       20220125T062654
+:END:
+
+
+# #+begin_src emacs-lisp
+# (setq org-capture-templates
+#       (setq org-capture-templates
+#             '(("t" "Todo" entry
+#                (file "~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org")
+#                ;; (file+headline "~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org" "Bandeja de entrada")
+#                "* TODO %?\n  %i")
+#               ("j" "Journal" entry
+#                (file+datetree  "~/documents/2022/2022_01_Taller_Emacs/Day_3/journal.org" "Journal")
+#                "* %?\nEntered on %U\n  %i\n  %a"))))
+# #+end_src
+
+# #+RESULTS:
+# | t | Todo | entry | (file+headline ~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org Bandeja de entrada) | * TODO %? |
+
+
+
+https://orgmode.org/manual/Capture-templates.html
+
+** Agenda views
+
+
+# #+begin_src elisp
+# (setq org-agenda-files '("~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org"))
+# #+end_src
+
+# #+RESULTS:
+# | ~/documents/2022/2022_01_Taller_Emacs/Day_3/gtd.org |
+
+
+# #+begin_src elisp
+#   (setq org-agenda-custom-commands
+#         '(("z" "Mi propia agenda"
+#            (
+#             (agenda "")
+#             (agenda "" ((org-agenda-start-day "-1d") ;nil
+#                         (org-agenda-span 10))) ;0
+#             (todo "WAIT" nil)
+#             (tags-todo "+PRIORITY=\"A\"+TODO=\"NEXT\"")))))
+# #+end_src
+
+# #+RESULTS:
+# | z | My propia agenda | ((agenda ) (agenda  ((org-agenda-start-day -1d) (org-agenda-span 10))) (todo WAIT nil) (tags-todo +PRIORITY="A"+TODO="NEXT")) |
+
+
+https://orgmode.org/manual/Custom-Agenda-Views.html
+
+* Export files
+
+** Citations
+
+*** Zotero
+**** Zotero styles
+#+begin_src elisp
+(setq org-cite-csl-styles-dir "~/Zotero/styles")
+#+end_src
+
+#+RESULTS:
+: ~/Zotero/styles
+
+*** Setting Bibliography
+**** In =config.el= file
+#+begin_example
+(setq org-cite-global-bibliography
+      '("~/Dropbox/home/documents/2022/2022_01_Taller_Emacs/Day_3/library.bib"))
+#+end_example
+**** In-buffer
+#+begin_example
+#+BIBLIOGRAPHY: library.bib
+#+end_example
+
+*** Bibliographic Styles
+
+By default is Chicago style.
+
+# #+cite_export: csl apa.csl
+#+cite_export: csl chicago-author-date.csl
+# #+cite_export: csl ieee.csl
+
+- In parenthesis :: This work was already done[cite:@SanchezPLS2013;@RaoData2005;@HardleApplied2019]
+- In text: ::  In [cite/t:@HardleMultivariate2015 p. 7;@HairMultivariate2019;@TinsleyHandbook2000] we have ...
+- Only authors: :: The work of [cite/t:@HardleMultivariate2015]... In fact, [cite/a/b:@HardleMultivariate2015] discovered that...
+- Full list of styles: :: https://blog.tecosaur.com/tmio/2021-07-31-citations.html
+
+
+**** References
+
+#+print_bibliography:
+
+* org-babel
+
+** Default block
+#+BEGIN_SRC python
+print("hello world")
+#+END_SRC
+
+#+RESULTS:
+: None
+
+** Exporting results
+#+BEGIN_SRC python :exports both :results output
+print("hello world")
+#+END_SRC
+
+#+RESULTS:
+: hello world
+
+** Different kind of language
+
+
+*** Python
+#+BEGIN_SRC python :exports both
+import matplotlib.pyplot as plt
+plt.plot([1,2,3,4])
+plt.savefig('fig1_manual.png')
+#+END_SRC
+
+#+RESULTS:
+: None
+
+[[./fig1_manual.png]]
+
+*** R
+
+#+begin_src R :results file graphics :exports results :file foo.png
+library(ggplot2)
+df <- data.frame(x=c(1, 2), y=c(2, 4))
+p <- ggplot(df, aes(x = x, y = y)) + geom_point()
+print(p)
+#+end_src
+
+#+RESULTS:
+[[file:foo.png]]
+
+*** C++
+
+#+begin_src cpp :exports both
+#include <iostream>
+
+int main() {
+    std::cout << "Hello World!";
+    return 0;
+}
+#+end_src
+
+#+RESULTS:
+: Hello World!
