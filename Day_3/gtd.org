@@ -1,0 +1,21 @@
+#+TITLE: GTD
+#+TODO: NEXT(n) TODO(t) WAIT(w@) | DONE(d) CNCL(c@)
+
+* Bandeja de entrada
+* Calendario
+** Llamar a Luis para organizar salida :llamadas:
+DEADLINE: <2022-01-26 Wed>
+** Estudiar para el examen de Emacs :estudio:
+SCHEDULED: <2022-02-05 Sat>
+** Examen del Taller de Emacs. :examenes:
+DEADLINE: <2022-02-10 Thu>
+
+* Proyectos
+** Taller de Emacs :cursos:
+DEADLINE: <2022-02-02 Wed>
+*** WAIT [#A] Revisar presentaciones del taller.
+*** TODO [#A] Hacer ejemplos con org-mode
+*** TODO [#B] Exportar un documento con org-mode
+*** TODO [#C] Exportar un ggplot con org-mode
+*** TODO [#C] Entender como se usan referencias en org-mode
+* Tasks
