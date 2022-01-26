@@ -1,0 +1,204 @@
+#+TITLE: Emacs workshop 2022: Day 4
+#+DATE: <2022-01-27 Thu>
+#+AUTHOR: Maikol Solís
+#+options: H:3 title:nil toc:nil
+
+
+* Handling knowledge with Emacs
+
+** The Zettelkasten method
+
+Niklas Luhmman wrote 70 books and nearly 400 scholarly articles published on a variety of subjects, including law, economy, politics, art, religion, ecology, mass media, and love.
+
+#+begin_center
+#+attr_latex: :width 15em :center
+[[./nl.png]]
+#+attr_latex: :width 15em :center
+[[./zk.png]]
+#+end_center
+
+** Why?
+
+- Improved understanding of the concepts
+- Better retention and recall
+- You'll find links between concepts that were not apparent before
+- Intentionality - you'll be more focused when learning because you have to think and make notes
+- You have one place to store all your notes - not spread across multiple platforms
+
+
+** The process
+
+The Zettelkasten process has three types of notes...
+
+*** Fleeting Notes
+
+Incomplete ideas, memory reminders
+
+*** Literature Notes
+
+After reading a papers or books you need to include  the references and expand the fleeting notes into more structured note.
+
+These are notes about other's ideas.
+
+
+*** Permanent Notes
+
+Once you have finished with your literature notes, you need to extract every idea/concept into separate notes.
+
+
+- Write only one idea per note but be as complete as possible. This forces you to think about the content and distill it down to its core ideas.
+- Write as if you are writing for somebody else.
+- Show the content source.
+- The note should be understood even if you don't know the context it was taken from. If you are looking at the note later, you will have forgotten the original context. The note should stand by itself.
+- Be precise, clear and brief.
+
+*** Connections
+
+The important part here is to create  connections between ideas
+
+[[./zk_link.png]]
+
+** Implementation in Emacs
+
+*** In =init.el=
+#+begin_example
+(org
+ +roam2
+ +noter)
+#+end_example
+
+
+*** In =package.el=
+
+#+begin_src
+(unpin! org-roam)
+(package! org-roam-bibtex)
+(package! org-roam-ui)
+#+end_src
+
+
+*** In =config.el=
+**** =org-roam=
+#+begin_src elisp
+(after! org-roam
+  (setq org-roam-directory (file-truename "~/documents/2022/2022_01_Taller_Emacs/Day_4/roam" ))
+  (setq completion-ignore-case t))
+#+end_src
+
+#+begin_src
+(setq org-roam-capture-templates
+        '(("n" "note" plain "%?"
+           :target (file+head "%<%Y%m%dT%H%M%S>-${slug}.org"
+                              ":PROPERTIES:
+:ID: %<%Y%m%dT%H%M%S>
+:Time-stamp: <>
+:END:
+#+TITLE: ${title}
+#+DATE: [%<%Y-%m-%d  %H:%M:%S>]")
+           :immediate-finish t
+           :unnarrowed t
+           :jump-to-captured t)
+          ("r" "reference" plain "%?"
+           :target (file+head "literature/${citekey}.org"
+                              ":PROPERTIES:
+:ROAM_REFS: @${citekey}
+:ID: %<%Y%m%dT%H%M%S>
+:Time-stamp: <>
+:END:
+#+TITLE: ${citekey}: ${title}
+#+DATE: [%<%Y-%m-%d  %H:%M:%S>]
+#+FILETAGS: literature
+
+- *Author(s)* :: ${author-or-editor}
+- *Title*     :: ${title}
+- *Tags*      :: ${keywords}
+- *URL*       :: ${url}
+- *File*      :: [[file:${file}]]
+
+,* ${citekey}: Summary
+:PROPERTIES:
+:END:
+
+,* ${citekey}: LN
+:PROPERTIES:
+:END:
+
+,* Fleeting notes
+:PROPERTIES:
+:ROAM_EXCLUDE: t
+:Custom_ID: ${citekey}
+:URL: ${url}
+:AUTHOR: ${author-or-editor}
+:NOTER_DOCUMENT: ${file}
+:NOTER_PAGE:
+:END:")
+           :immediate-finish t
+           :unnarrowed t
+           :jump-to-captured t)))
+#+end_src
+
+
+**** =org-roam-bibtex=
+#+begin_src elisp
+(after! citar
+(setq org-cite-global-bibliography '("~/documents/2022/2022_01_Taller_Emacs/Day_4/roam/library.bib")))
+#+end_src
+
+#+RESULTS:
+| ~/documents/2022/2022_01_Taller_Emacs/Day_4/roam/library.bib |
+
+
+#+begin_src elisp
+(use-package! org-roam-bibtex
+  :after org-roam
+  :config
+  (setq orb-preformat-keywords
+        '("citekey" "title" "url" "author-or-editor" "keywords" "file"))
+
+  (setq orb-process-file-keyword t
+        orb-file-field-extensions '(".pdf", ".djvu")))
+#+end_src
+
+**** =org-roam-ui=
+#+begin_src elisp
+(use-package! websocket
+  :after org-roam)
+
+(use-package! org-roam-ui
+  :after org-roam
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-follow-mode t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+#+end_src
+
+** Workflow
+
+1. Include sources to Zotero: https://www.wisdom.weizmann.ac.il/~zvika/course2015/announcements/WainerAmericanStatistician1984.pdf
+2. Export bibtex file.
+3. Capture the reference.
+4. Highlight the pdf (fleeting notes).
+5. Create literature notes.
+6. Create permanent notes.
+7. Link notes.
+8. Visualize
+
+** Optional
+
+#+begin_src elisp
+(after! org-roam
+  (map! :leader
+        (:prefix-map ("r" . "+org-roam")
+         :desc "org-roam"             "l" #'org-roam-buffer-toggle
+         ;; :desc "org-roam-find-index"  "j" #'(lambda () (interactive) (org-roam-node-visit (org-roam-node-from-id "zk-index-20200615T000001")))
+         :desc "org-roam-node-insert" "i" #'org-roam-node-insert
+         :desc "org-roam-node-find"   "f" #'org-roam-node-find
+         :desc "org-roam-ref-find"    "r" #'org-roam-ref-find
+         :desc "org-roam-ui-mode"     "g" #'org-roam-ui-mode
+         :desc "org-roam-capture"     "c" #'org-roam-capture))
+
+  (defun org-roam-image-name (fignumber  description ext)
+    (concat (org-roam-id-at-point) "-figure-" (number-to-string fignumber) "-" (clean-filename description) "." ext )))
+#+end_src

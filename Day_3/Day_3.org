@@ -1,4 +1,4 @@
-#+TITLE: Emacs workshop 2022: Day 2
+#+TITLE: Emacs workshop 2022: Day 3
 #+DATE: 2022-01-25
 #+AUTHOR: Maikol Solís
 #+options: H:2 title:nil toc:nil
