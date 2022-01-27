@@ -1,7 +1,16 @@
+:PROPERTIES:
+:ID:       e54b2893-de15-4f95-8897-ec78ad59a29c
+:END:
 #+TITLE: Emacs workshop 2022: Day 4
 #+DATE: <2022-01-27 Thu>
 #+AUTHOR: Maikol Solís
 #+options: H:3 title:nil toc:nil
+
+* Prueba
+:PROPERTIES:
+:ID:       0424d1b4-c076-4893-a265-a8796f4fb013
+:END:
+
 
 
 * Handling knowledge with Emacs
@@ -76,7 +85,6 @@ The important part here is to create  connections between ideas
 (package! org-roam-ui)
 (package! citar)
 (package! helm-bibtex)
-
 #+end_src
 
 
@@ -189,16 +197,18 @@ The important part here is to create  connections between ideas
         org-roam-ui-open-on-start t))
 #+end_src
 
+
+
 ** Workflow
 
-1. Include sources to Zotero: https://www.wisdom.weizmann.ac.il/~zvika/course2015/announcements/WainerAmericanStatistician1984.pdf
-2. Export bibtex file.
-3. Capture the reference.
-4. Highlight the pdf (fleeting notes).
-5. Create literature notes.
-6. Create permanent notes.
-7. Link notes.
-8. Visualize
+1. [X] Include sources to Zotero: https://www.wisdom.weizmann.ac.il/~zvika/course2015/announcements/WainerAmericanStatistician1984.pdf
+2. [X] Export bibtex file.
+3. [X] Capture the reference.
+4. [X] Highlight the pdf (fleeting notes).
+5. [X] Create literature notes.
+6. [X] Create permanent notes.
+7. [X] Link notes.
+8. [X] Visualize
 
 ** Optional
 
@@ -207,13 +217,22 @@ The important part here is to create  connections between ideas
   (map! :leader
         (:prefix-map ("r" . "+org-roam")
          :desc "org-roam"             "l" #'org-roam-buffer-toggle
-         ;; :desc "org-roam-find-index"  "j" #'(lambda () (interactive) (org-roam-node-visit (org-roam-node-from-id "zk-index-20200615T000001")))
+         :desc "org-roam-find-index"  "j" #'(lambda () (interactive) (org-roam-node-visit (org-roam-node-from-id "INDEX")))
          :desc "org-roam-node-insert" "i" #'org-roam-node-insert
          :desc "org-roam-node-find"   "f" #'org-roam-node-find
          :desc "org-roam-ref-find"    "r" #'org-roam-ref-find
          :desc "org-roam-ui-mode"     "g" #'org-roam-ui-mode
          :desc "org-roam-capture"     "c" #'org-roam-capture))
 
+  (defun alphanumericp (ch)
+    (cl-find ch "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"))
+
+  (defun clean-filename (name)
+    (downcase (cl-remove-if-not (lambda (ch) (or (alphanumericp ch) (cl-find ch "-_.")))
+                                (cl-substitute ?\_ 32 name))))
+
   (defun org-roam-image-name (fignumber  description ext)
     (concat (org-roam-id-at-point) "-figure-" (number-to-string fignumber) "-" (clean-filename description) "." ext )))
+
+
 #+end_src
