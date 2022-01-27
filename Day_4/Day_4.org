@@ -72,8 +72,11 @@ The important part here is to create  connections between ideas
 
 #+begin_src
 (unpin! org-roam)
-(package! org-roam-bibtex)
+(unpin! org-roam-bibtex)
 (package! org-roam-ui)
+(package! citar)
+(package! helm-bibtex)
+
 #+end_src
 
 
@@ -140,24 +143,36 @@ The important part here is to create  connections between ideas
 
 **** =org-roam-bibtex=
 #+begin_src elisp
-(after! citar
-(setq org-cite-global-bibliography '("~/documents/2022/2022_01_Taller_Emacs/Day_4/roam/library.bib")))
+(after! citar-org
+  (setq citar-bibliography '("~/Dropbox/home/documents/2022/2022_01_Taller_Emacs/Day_4/roam/library.bib"))
+  (setq org-cite-global-bibliography citar-bibliography)
+  (setq bibtex-completion-bibliography citar-bibliography)
+  (setq citar-notes-paths '("~/Dropbox/home/documents/2022/2022_01_Taller_Emacs/Day_4/roam/literature/"))
+  (setq org-cite-insert-processor 'citar)
+  (setq org-cite-follow-processor 'citar)
+  (setq org-cite-activate-processor 'citar)
+  (setq citar-open-note-function 'orb-citar-edit-note)
+  (setq citar-at-point-function 'embark-act)
+  ;; Use consult-completing-read for enhanced interface.
+  (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple))
+
+(use-package! org-roam-bibtex
+  :after org-roam
+  :config
+  ;; (require 'org-ref)
+  (setq orb-preformat-keywords
+        '("citekey" "title" "url" "author-or-editor" "keywords" "file"))
+
+  (setq orb-roam-ref-format 'org-cite)
+
+  (setq orb-process-file-keyword t
+        orb-file-field-extensions '(".pdf", ".djvu")
+        orb-insert-follow-link t))
 #+end_src
 
 #+RESULTS:
 | ~/documents/2022/2022_01_Taller_Emacs/Day_4/roam/library.bib |
 
-
-#+begin_src elisp
-(use-package! org-roam-bibtex
-  :after org-roam
-  :config
-  (setq orb-preformat-keywords
-        '("citekey" "title" "url" "author-or-editor" "keywords" "file"))
-
-  (setq orb-process-file-keyword t
-        orb-file-field-extensions '(".pdf", ".djvu")))
-#+end_src
 
 **** =org-roam-ui=
 #+begin_src elisp
