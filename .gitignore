@@ -1,0 +1,10 @@
+*.el
+*.bbl
+*.html
+*.pyg
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.gz
+*.webp
