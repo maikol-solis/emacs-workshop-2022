@@ -1,0 +1,83 @@
+:PROPERTIES:
+:ROAM_REFS: @WainerHow1984
+:ID: 20220127T113636
+:Time-stamp: <2022-01-27 11:53:35 maikol>
+:END:
+#+TITLE: WainerHow1984: How to Display Data Badly
+#+DATE: [2022-01-27  11:36:36]
+#+FILETAGS: literature
+- *Author(s)* :: Wainer, H.
+- *Title*     :: How to Display Data Badly
+- *Tags*      :: 
+- *URL*       :: 
+- *File*      :: [[file:/Users/maikol/Zotero/storage/CHBVGBMN/Wainer - 1984 - How to Display Data Badly.pdf]]
+
+* WainerHow1984: Summary
+:PROPERTIES:
+:ID:       20220127T114102
+:END:
+
+Resumen es ...
+
+* WainerHow1984: LN Es fácil crear gráficos malos
+:PROPERTIES:
+:ID:       20220127T114909
+:END:
+
+Explicación ....
+
+* WainerHow1984: LN Los gráficos son malos.
+:PROPERTIES:
+:ID:       20220127T115029
+:END:
+
+Explicación...
+
+* Fleeting notes
+:PROPERTIES:
+:ROAM_EXCLUDE: t
+:Custom_ID: WainerHow1984
+:URL: 
+:AUTHOR: Wainer, H.
+:NOTER_DOCUMENT: /Users/maikol/Zotero/storage/CHBVGBMN/Wainer - 1984 - How to Display Data Badly.pdf
+:NOTER_PAGE:
+:END:
+
+** Skeleton
+
+*** Link on page 1: [[http://links.jstor.org/sici?sici=0003-1305%28198405%2938%3A2%3C137%3AHTDDB%3E2.0.CO%3B2-N][http://links.jstor.org/sici?sici=0003-1305%28198405%2938%3A2%3C137%3AHTDDB%3E2.0.CO%3B2-N]]
+:PROPERTIES:
+:NOTER_PAGE: (1 . 0.283081)
+:END:
+
+*** Link on page 1: [[http://www.jstor.org/about/terms.html][http://www.jstor.org/about/terms.html]]
+:PROPERTIES:
+:NOTER_PAGE: (1 . 0.423485)
+:END:
+
+*** Link on page 1: [[http://www.jstor.org/journals/astata.html][http://www.jstor.org/journals/astata.html]]
+:PROPERTIES:
+:NOTER_PAGE: (1 . 0.492929)
+:END:
+
+*** Text note on page 2
+:PROPERTIES:
+:NOTER_PAGE: (2 . 0.481142)
+:END:
+
+**** Contents
+
+**** Comment
+Me parece interesante esta parte
+
+*** Highlight on page 3
+:PROPERTIES:
+:NOTER_PAGE: (3 . 0.5159079999999999)
+:END:
+
+**** Contents
+What does a data graphic with a ddi of .3 look like?
+Shown in Figure 1 is a graphic from the book Social
+Indicators I11 (SI3), originally done in four colors (orig-
+inal size 7" by 9") that contains 18 numbers (18163 = .3).
+The median data graph in S13 has a data density

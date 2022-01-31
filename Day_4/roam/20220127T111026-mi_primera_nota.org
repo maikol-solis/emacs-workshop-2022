@@ -1,0 +1,20 @@
+:PROPERTIES:
+:ID: 20220127T111026
+:Time-stamp: <2022-01-27 12:16:06 maikol>
+:END:
+#+TITLE: Mi primera nota
+#+DATE: [2022-01-27  11:10:26]
+
+Esta es mi primera nota
+
+Otra modificación
+
+Nueva modificación.
+
+
+#+begin_src R :results file graphics :exports results :file (org-roam-image-name 1 "grafico de normales" "png")
+plot(rnorm(100))
+#+end_src
+
+#+RESULTS:
+[[file:20220127T111026-figure-1-grafico_de_normales.png]]

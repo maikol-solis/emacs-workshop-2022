@@ -1,0 +1,12 @@
+:PROPERTIES:
+:ID: 20220127T115218
+:Time-stamp: <2022-01-27 11:56:39 maikol>
+:END:
+#+TITLE: No use gráficos pastel
+#+DATE: [2022-01-27  11:52:18]
+
+
+De acuerdo con [cite:@WainerHow1984] algunos gráficos on malos
+porque es fácil crear gráficos malos ([[id:20220127T114909][WainerHow1984: LN Es fácil crear gráficos malos]])
+
+Además esto me recuerda [[id:20220127T111026][Mi primera nota]]

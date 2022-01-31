@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID: INDEX
+:END:
+#+TITLE: Index
+
+cual fue [[id:20220127T111026][Mi primera nota]]
+
+
+[cite:@WainerHow1984]
