@@ -1,0 +1,110 @@
+#+TITLE: Emacs workshop 2022: Day 5
+#+DATE: <2022-02-01 Tue>
+#+AUTHOR: Maikol Solís
+#+options: H:3 title:nil toc:nil
+
+* Git basics
+
+** Why git is important?
+
+[[./final.jpg]]
+
+\newpage
+** What is git?
+
+Git is a Version Control System (VCS) that is designed to track files and changes among multiple users.
+
+[[./remote.png]]
+
+\newpage
+** How does it work?
+
+
+
+[[./git.png]]
+
+\newpage
+** How to use git?
+
+
+https://git-scm.com/downloads/guis
+
+ #+begin_center
+ #+attr_latex: :height 12em :center
+[[./s1.png]]
+  #+attr_latex: :height 12em :center
+[[./s2.png]]
+
+ #+attr_latex: :height 12em :center
+[[./s3.png]]
+ #+attr_latex: :height 12em :center
+[[./s4.png]]
+ #+end_center
+
+* Magit
+
+[[./magit.png]]
+
+
+** Preparation
+
+- [ ] In =config.el=
+#+begin_example
+;;;; Email information
+(setq user-full-name "Maikol Solís"
+      user-mail-address "maikol.solis@ucr.ac.cr")
+#+end_example
+
+- [ ] In =init.el=
+#+begin_example
+:editor
+(evil
+ +everywhere)
+
+:tools
+(magit
+ +forge)
+#+end_example
+
+- [ ] Create a github repository
+- [ ] Do example with latex file
+- [ ] Do example with =org-roam=
+  #+begin_src elisp
+(after! org-roam
+  (setq org-roam-directory
+        (file-truename "~/documents/2022/2022_01_Taller_Emacs/roam")))
+#+end_src
+
+#+RESULTS:
+: /Users/maikol/Dropbox/home/documents/2022/2022_01_Taller_Emacs/roam
+
+- [ ] Activate =real-auto-save-mode=
+  - In =packages.el=
+   #+begin_example
+  (package! real-auto-save)
+   #+end_example
+  - In =config.el=
+   #+begin_example
+   ;;; real-auto-save
+   (use-package! real-auto-save
+     :hook ((LaTeX-mode . real-auto-save-mode)
+            (org-mode . real-auto-save-mode)
+            (markdown-mode . real-auto-save-mode)))
+   #+end_example
+
+- [ ] Activate =git-auto-commit-mode=
+  - In =packages.el=
+   #+begin_example
+  (package! git-auto-commit-mode)
+   #+end_example
+  - In =config.el=
+   #+begin_example
+  (use-package! git-auto-commit-mode
+  :config
+  (setq gac-automatically-push-p t))
+  #+end_example
+- [ ] Add =.dir-locals=
+  #+begin_example
+  ((nil . ((eval git-auto-commit-mode 1)
+           (eval real-auto-save-mode 1))))
+  #+end_example
